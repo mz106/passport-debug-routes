@@ -1,0 +1,181 @@
+openapi: 3.0.3
+
+info:
+  title: passportDebug
+  version: 0.1.0
+  
+servers:
+-  url: http://localhost 
+   description: localhost
+   
+paths:
+  "/user":
+    post:
+      summary: creates and adds user to db
+      responses:
+        "201":
+          description: user has been added
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/userRegister"
+  "/user/login":
+    post:
+      summary: allows for user login
+      responses:
+        "200":
+          description: user logged in
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/userLogin"
+  "/movies":
+    post:
+      summary: adds movie to db
+      responses:
+        "201":
+          description: movie added
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/movieAdd"
+  "/movies/:title":
+    get:
+      summary: gets movie by title
+      responses:
+        "200":
+          description: movie found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/findOneMovieByTitle"
+  "/movies/update/:title":
+    put:
+      summary: updates movie by title
+      responses:
+        "201":
+          description: update movie by title
+          content:    
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/updateOneMovieByTitle"
+  "/movies/delete/:title":
+    delete:
+      summary: deletes movie by title
+      responses:
+        "202":
+          description: movie deleted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/deleteMovieByTitle"
+components:
+  schemas:
+    userRegister:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: user id
+        username:
+          type: string
+          description: users username
+        d.o.b:
+          type: string
+          description: DOB of the user
+        email:
+          type: string
+          description: email address of the user
+    userLogin:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: user id
+        username:
+          type: string
+          description: users username
+        token:
+          type: string
+          description: a JWT
+    movieAdd:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: movie id
+        title:
+          type: string
+          description: movie title
+        ageRating: 
+          type: integer
+          description: age rating of movie
+        star:
+          type: string
+          description: star of movie
+        director: 
+          type: string
+          description: director of movie
+        rating: 
+          type: integer
+          description: rating of movie
+        desc: 
+          type: string
+          description: movie description
+    findOneMovieByTitle:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: movie id
+        title:
+          type: string
+          description: movie title
+        ageRating: 
+          type: integer
+          description: age rating of movie
+        star:
+          type: string
+          description: star of movie
+        director: 
+          type: string
+          description: director of movie
+        rating: 
+          type: integer
+          description: rating of movie
+        desc: 
+          type: string
+          description: movie description
+    updateOneMovieByTitle:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: movie id
+        title:
+          type: string
+          description: movie title
+        ageRating: 
+          type: integer
+          description: age rating of movie
+        star:
+          type: string
+          description: star of movie
+        director: 
+          type: string
+          description: director of movie
+        rating: 
+          type: integer
+          description: rating of movie
+        desc: 
+          type: string
+          description: movie description
+    deleteMovieByTitle:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: movie id
+        title:
+          type: string
+          description: movie title
